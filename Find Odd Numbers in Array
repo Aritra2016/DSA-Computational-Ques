@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+class Utility {
+    public static int printOdd(int[] numbers){
+        int count = 0;
+        for (int i = 0; i<numbers.length;i++){
+            if(numbers[i] %2 == 1) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+}
+
+class Tester {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String inputString = in.nextLine();
+        String[] splitArray = inputString.split(",");
+        int[] numbers = new int [splitArray.length];
+        for ( int i =0;i<splitArray.length;i++){
+            numbers[i] = Integer.parseInt(splitArray[i]);
+        }
+        in.close();
+        System.out.println(Utility.printOdd(numbers));
+    }
+}
+
+
+
+
+Explain Tester class logic-->
+================================
+
+Utility class logic-->
+======================
+
+-The code you provided consists of two classes: Utility and Tester. Let's break down the logic step by step:
+
+The Utility class has a static method named printOdd which takes an array of integers as input and returns the count of odd numbers in the array.
+
+Inside the printOdd method, an integer variable count is initialized to 0. This variable will keep track of the count of odd numbers.
+
+A for loop is used to iterate over each element in the numbers array. The loop variable i starts from 0 and goes up to the length of the numbers array.
+
+Inside the loop, the if statement checks if the current element numbers[i] is odd. This is done by checking if the remainder of dividing numbers[i] by 2 is equal to 1. If it is, it means the number is odd.
+
+If the number is odd, the count variable is incremented by 1.
+
+After iterating over all the elements in the numbers array, the final value of count is returned as the result.
+
+
+
+Tester class logic-->
+==================
+
+The Tester class has the main method where the program execution starts.
+
+- A Scanner object named in is created to read input from the user.
+
+- The in.nextLine() statement reads a line of input from the user and assigns it to the inputString variable.
+
+- The inputString is split into an array of strings using the comma (,) as the delimiter. The resulting array is stored in the splitArray variable.
+
+- An integer array named numbers is initialized with the same length as the splitArray.
+
+- A for loop is used to iterate over each element in the splitArray. The loop variable i starts from 0 and goes up to the length of the splitArray.
+
+-** Inside the for loop, each element in the splitArray is converted to an integer using Integer.parseInt() and stored in the corresponding index of the numbers array.
+
+The Scanner object is closed to release system resources.
+
+Finally, the Utility.printOdd(numbers) method is called, passing the numbers array as an argument. The result is printed to the console using System.out.println().
+
+In summary, the Tester class takes a comma-separated list of integers as input from the user, converts it into an array of integers, and then calls the Utility.printOdd method to count the number of odd numbers in the array. The result is then printed to the console.
+
+
+
