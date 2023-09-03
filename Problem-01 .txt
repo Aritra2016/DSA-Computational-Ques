@@ -1,0 +1,184 @@
+Q) Consider an array inarray consisting of at least two unique non-zero positive integers
+• Find and print ,outnum, the count of unique pairs of integers
+where the NUMBER of prime factors is same for both the integers
+in the pair. Using java program
+• If no such pair can be found print -1.
+Note:
+• The pair of integers must be formed with unique elements
+• 1 is not a prime number.
+
+
+
+1st Approach
+=============
+
+import java.util.*;
+
+public class UniquePrimeFactorsPairs {
+    public static void main(String[] args) {
+        int[] inarray = {2, 3, 4, 5, 6, 8}; // Example input array
+
+        int count = findUniquePrimeFactorsPairsCount(inarray);
+        System.out.println("Count: " + count);
+    }
+
+    public static int findUniquePrimeFactorsPairsCount(int[] inarray) {
+        Map<Integer, Integer> primeFactorsCount = new HashMap<>();
+        int count = 0;
+
+        for (int num : inarray) {
+            Set<Integer> primeFactors = getPrimeFactors(num);
+            int primeFactorsHash = primeFactors.hashCode();
+
+            if (primeFactorsCount.containsKey(primeFactorsHash)) {
+                int prevCount = primeFactorsCount.get(primeFactorsHash);
+                count += prevCount;
+                primeFactorsCount.put(primeFactorsHash, prevCount + 1);
+            } else {
+                primeFactorsCount.put(primeFactorsHash, 1);
+            }
+        }
+
+        return count > 0 ? count : -1;
+    }
+
+    public static Set<Integer> getPrimeFactors(int num) {
+        Set<Integer> primeFactors = new HashSet<>();
+
+        while (num % 2 == 0) {
+            primeFactors.add(2);
+            num /= 2;
+        }
+
+        for (int i = 3; i <= Math.sqrt(num); i += 2) {
+            while (num % i == 0) {
+                primeFactors.add(i);
+                num /= i;
+            }
+        }
+
+        if (num > 2) {
+            primeFactors.add(num);
+        }
+
+        return primeFactors;
+    }
+}
+
+Explanation
+================
+
+In this program, we first define the inarray array, which represents the input array of positive integers. You can modify this array as per your requirement.
+
+The findUniquePrimeFactorsPairsCount function takes the inarray as input and returns the count of unique pairs of integers where the number of prime factors is the same for both integers. It uses a HashMap to keep track of the count of unique prime factor combinations. For each number in the inarray, it calculates the prime factors using the getPrimeFactors function and hashes the prime factors to check if the combination has been encountered before. If it has, the count is updated accordingly. Finally, the function returns the count of unique pairs, or -1 if no such pair is found.
+
+The getPrimeFactors function calculates the prime factors of a given number using a basic trial division algorithm. It returns a set of prime factors.
+
+In the main function, we call the findUniquePrimeFactorsPairsCount function with the inarray and print the result.
+
+Please note that the provided code assumes that the input array inarray will always contain at least two unique non-zero positive integers. You can modify the code accordingly if you need to handle different scenarios.
+
+
+------------------------------------------------------
+
+The UniquePrimeFactorsPairs class is defined.
+
+In the main method, an example input array inarray is initialized with values {2, 3, 4, 5, 6, 8}. This array represents the input array of positive integers. You can modify this array to suit your needs.
+
+The findUniquePrimeFactorsPairsCount method is called with the inarray, and the returned count is stored in the count variable.
+
+The findUniquePrimeFactorsPairsCount method takes the inarray as input and returns the count of unique pairs of integers where the number of prime factors is the same for both integers.
+
+Inside the findUniquePrimeFactorsPairsCount method, a HashMap named primeFactorsCount is created to keep track of the count of unique prime factor combinations. The key of the map is the hash value of the prime factors, and the value is the count.
+
+The count variable is initialized to 0.
+
+A loop iterates over each number num in the inarray.
+
+For each num, the getPrimeFactors method is called to calculate its prime factors, which are returned as a Set of integers.
+
+The hash value of the prime factors is calculated using the hashCode method.
+
+If the primeFactorsCount map already contains the calculated hash value, it means that a previous number had the same prime factors. In this case, the count is increased by the value associated with that hash key, and the count is updated in the primeFactorsCount map.
+
+If the primeFactorsCount map does not contain the calculated hash value, it means that this is the first occurrence of these prime factors. In this case, a new entry is added to the primeFactorsCount map with the hash value as the key and the count initialized to 1.
+
+After processing all the numbers in the inarray, the final count is stored in the count variable.
+
+Finally, the count variable is returned from the findUniquePrimeFactorsPairsCount method.
+
+In the main method, the value of count is printed.
+
+
+
+
+
+02nd Approach
+=============
+
+import java.util.Arrays;
+
+public class UniquePrimeFactorsPairs {
+    public static void main(String[] args) {
+        int[] inarray = {2, 3, 4, 5, 6, 8}; // Example input array
+
+        int count = findUniquePrimeFactorsPairsCount(inarray);
+        System.out.println("Count: " + count);
+    }
+
+    public static int findUniquePrimeFactorsPairsCount(int[] inarray) {
+        int[] primeFactorsCount = new int[inarray.length];
+        int count = 0;
+
+        for (int i = 0; i < inarray.length; i++) {
+            int[] primeFactors = getPrimeFactors(inarray[i]);
+            int primeFactorsHash = Arrays.hashCode(primeFactors);
+
+            for (int j = 0; j < i; j++) {
+                if (primeFactorsHash == Arrays.hashCode(getPrimeFactors(inarray[j]))) {
+                    count += primeFactorsCount[j];
+                }
+            }
+
+            primeFactorsCount[i]++;
+        }
+
+        return count > 0 ? count : -1;
+    }
+
+    public static int[] getPrimeFactors(int num) {
+        int[] primeFactors = new int[32]; // Assuming the maximum number of prime factors is 32
+
+        int index = 0;
+        while (num % 2 == 0) {
+            primeFactors[index++] = 2;
+            num /= 2;
+        }
+
+        for (int i = 3; i * i <= num; i += 2) {
+            while (num % i == 0) {
+                primeFactors[index++] = i;
+                num /= i;
+            }
+        }
+
+        if (num > 2) {
+            primeFactors[index++] = num;
+        }
+
+        return Arrays.copyOf(primeFactors, index);
+    }
+}
+
+
+
+Explanation
+=================
+
+In this version, the primeFactorsCount array is used to keep track of the count of unique prime factor combinations. It has the same length as the inarray to maintain a count for each corresponding element.
+
+The getPrimeFactors function returns an array of prime factors instead of a set. It initializes an array of size 32 (assuming the maximum number of prime factors is 32) and populates it with prime factors using a trial division algorithm. The final array is trimmed using Arrays.copyOf to remove any unused elements.
+
+The rest of the code remains the same. The findUniquePrimeFactorsPairsCount function iterates over the inarray and calculates the prime factors for each element. It then compares the hash of the prime factors with previously encountered elements to check for unique pairs. If a match is found, the count is updated accordingly.
+
+Again, please note that the provided code assumes that the input array inarray will always contain at least two unique non-zero positive integers. You can modify the code as per your requirements.
