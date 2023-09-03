@@ -1,0 +1,64 @@
+<===Sum of Elements of Array===>
+
+
+
+
+import java.util.Scanner;
+
+class Utility {
+    public static int findSum(int[] numbers){
+        int sum = 0;
+        for (int i = 0; i<numbers.length;i++){
+            sum = sum + numbers[i];
+        }
+        return sum;
+    }
+}
+
+
+Ans=== Logic Of Tester class is below mentioned--
+
+
+
+class Tester {
+    public static void main(String[] args) {
+
+        // Create a Scanner object to read input from the user
+
+        Scanner in = new Scanner(System.in);
+
+        /*The nextLine() method reads a line of input from the user and returns it as a string.
+
+InputString is a string variable to contain the actual string entered by the user, and it is not a reference to any other variable or object.
+*/
+
+
+        String inputString = in.nextLine();
+
+        // Split the input string into an array of strings using comma as the delimiter
+        String[] splittedArray = inputString.split(",");
+
+        // Create an array of integers to store the parsed numbers
+        int[] numbers = new int[splittedArray.length];
+
+        // Convert each element of the splittedArray to an integer and store it in the numbers array
+        for (int i = 0; i < splittedArray.length; i++) {
+            numbers[i] = Integer.parseInt(splittedArray[i]);
+        }
+
+        // Call the findSum method of the Utility class, passing the numbers array as an argument,
+        // and print the result
+        System.out.println(Utility.findSum(numbers));
+    }
+}
+```
+
+The `main` method performs the following steps:
+
+- Creates a `Scanner` object to read input from the user.
+- Reads a line of input from the user and stores it in the `inputString` variable.
+- Splits the `inputString` into an array of strings using a comma (`,`) as the delimiter and stores it in the `splittedArray` variable.
+- Creates an array of integers called `numbers` with the same length as the `splittedArray`.
+- Converts each element of the `splittedArray` to an integer using `Integer.parseInt()` method and stores it in the `numbers` array.
+- Calls the `findSum` method of the `Utility` class, passing the `numbers` array as an argument.
+- Finally, it prints the result returned by the `findSum` method.
