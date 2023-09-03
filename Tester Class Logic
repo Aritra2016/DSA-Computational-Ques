@@ -1,0 +1,27 @@
+
+
+class Tester {
+    public static void main(String[] args) {
+
+        // Create a Scanner object to read input from the user
+
+        Scanner in = new Scanner(System.in);
+
+        /*The nextLine() method reads a line of input from the user and returns it as a string.
+
+InputString is a string variable to contain the actual string entered by the user, and it is not a reference to any other variable or object.
+*/
+
+
+        String inputString = in.nextLine();
+
+        // Split the input string into an array of strings using comma as the delimiter
+        String[] splittedArray = inputString.split(",");
+
+        // Create an array of integers to store the parsed numbers
+        int[] numbers = new int[splittedArray.length];
+
+        // Convert each element of the splittedArray to an integer and store it in the numbers array
+        for (int i = 0; i < splittedArray.length; i++) {
+            numbers[i] = Integer.parseInt(splittedArray[i]);
+        }
