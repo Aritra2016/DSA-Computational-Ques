@@ -1,0 +1,43 @@
+Insertion an element  in Array---
+
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+ class Utility {
+    public static int[] insertElement(int[] numbers, int index, int newElement){
+
+        int [] newArray = new int[numbers.length+1];
+
+        for(int i=0;i<index-1;i++){
+            newArray[i] = numbers[i];
+        }
+        newArray[i] = newElement;
+        
+        for(i=0 ; i< numbers.length-1;i++){
+            newArray[i+1] = numbers[i];
+        }
+
+        return newArray;
+
+    }
+}
+
+
+
+class Tester {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String inputString = in.nextLine();
+        String[] splitArray = inputString.split("#");
+        int newElement = Integer.parseInt(splitArray[0]);
+        int insertAfterIndex = Integer.parseInt(splitArray[1]);
+        String[] numberArray = splitArray[2].split(",");
+        
+        int[] numbers = new int [numberArray.length];
+        for ( int i =0;i<numberArray.length;i++){
+            numbers[i] = Integer.parseInt(numberArray[i]);
+        }
+        System.out.println(Arrays.toString(Utility.insertElement(numbers, insertAfterIndex,newElement)));
+    }
+}
