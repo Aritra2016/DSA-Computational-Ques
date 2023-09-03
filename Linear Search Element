@@ -1,0 +1,111 @@
+Linear Searching 
+
+Method-01
+---------------------
+
+import java.util.Scanner;
+
+class LinearSearchUtility {
+
+    public static int searchArray(int[] array, int searchElement) {
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == searchElement) {
+                return i; // Element found, return the index
+            }
+        }
+        return -1; // Element not found
+    }
+}
+
+public class Tester {
+
+    public static void main(String[] args) {
+     //Import scanner class
+        Scanner scanner = new Scanner(System.in);
+
+        //Print Statemnt
+        System.out.print("Enter the number of elements in the array: ");
+
+        int n = scanner.nextInt(); //n= numbers of array
+
+        int[] array = new int[n];
+
+        System.out.println("Enter the array elements:");//User input Array Element
+
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        // Input element or, key to search
+        System.out.print("Enter the element or key to search: ");
+
+        int searchElement = scanner.nextInt();
+
+
+        // Perform linear search using the utility class
+        int index = LinearSearchUtility.searchArray(array, searchElement);
+
+        // Print the result
+        if (index != -1) {
+            System.out.println("Element found at index " + index);
+        } 
+
+else {
+            System.out.println("Element not found in the array.");
+        }
+    }
+}
+
+
+
+__________________________________________________________
+
+
+Method-02==
+
+
+public class Utility {
+
+    //linear search method
+    public static int linearSearch(int numbers[], int key) {
+
+        //iterate & search key
+        for (int i=0; i<numbers.length;i++){
+            if(numbers[i]==key){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+}
+
+
+
+import java.util.Scanner;
+
+public class Tester {
+
+    private static Scanner sc;
+
+    public static void main(String[] args) {
+    //declare array
+        int numbers[ ]={2,4,6,10,12,14,16};
+     //Key===>
+      int key=12;
+
+//declare array index====>
+        int index=Utility.linearSearch(numbers,key);
+        if(index!=-1){
+            System.out.println("key is at found is key"+key);
+        }else{
+            System.out.println("Key is not found");
+        }
+
+    }
+}
+
+
+
