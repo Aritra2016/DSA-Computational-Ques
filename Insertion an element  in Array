@@ -1,6 +1,7 @@
 Insertion an element  in Array---
 
-
+1st Solution
+=================
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -41,3 +42,74 @@ class Tester {
         System.out.println(Arrays.toString(Utility.insertElement(numbers, insertAfterIndex,newElement)));
     }
 }
+
+
+
+
+02nd Solution
+=======================
+// Utility class
+class ArrayUtil {
+    public static int[] insertElementAfterIndex(int[] arr, int index, int element) {
+
+      // we create a new array=newArr with a size one greater than the original array to insert an element
+        int[] newArr = new int[arr.length + 1];
+
+        // Coping elements before the index
+        for (int i = 0; i <= index; i++) {
+            newArr[i] = arr[i];
+        }
+
+        // Insert the element
+        newArr[index + 1] = element;
+
+        // Copy elements after the index
+        for (int i = index + 1; i < arr.length; i++) {
+            newArr[i + 1] = arr[i];
+        }
+
+        return newArr;
+    }
+}
+
+// Tester class
+public class ArrayInsertionTester {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5};
+        int element = 10;
+        int index = 2;
+
+        // Insert element after index
+        int[] newArray = ArrayUtil.insertElementAfterIndex(array, index, element);
+
+        // Print the updated array
+        System.out.println("Original Array: " + Arrays.toString(array));
+        System.out.println("Updated Array: " + Arrays.toString(newArray));
+    }
+}
+
+
+Explanation
+================
+We start by defining a utility class called ArrayUtil. This class contains a single static method called insertElementAfterIndex, which takes three arguments: an array arr, an index index, and an element element. This method returns a new array with the element inserted after the specified index.
+
+Inside the insertElementAfterIndex method, we create a new array newArr with a size one greater than the original array. This is because we are inserting an element, so the new array will have one additional element.
+
+We then copy the elements from the original array arr to the new array newArr up to the specified index. We do this using a for loop that iterates from 0 to index, copying each element from arr to newArr.
+
+After copying the elements before the index, we insert the element element at index + 1 in the new array newArr. This ensures that the element is inserted after the specified index.
+
+Finally, we copy the remaining elements from the original array arr to the new array newArr, starting from the index after the specified index. We use another for loop that iterates from index + 1 to arr.length - 1, copying each element from arr to newArr.
+
+Once all the elements are copied, we return the new array newArr from the insertElementAfterIndex method.
+
+Next, we define a tester class called ArrayInsertionTester. This class contains the main method, where we will test the functionality of the ArrayUtil class.
+
+Inside the main method, we create an array array with some initial values: {1, 2, 3, 4, 5}. We also specify the element element we want to insert (in this case, 10) and the index index after which we want to insert the element (in this case, 2).
+
+We then call the insertElementAfterIndex method from the ArrayUtil class, passing the array, index, and element as arguments. The method returns a new array newArray with the element 10 inserted after index 2.
+
+Finally, we print the original array array and the updated array newArray using the Arrays.toString() method to convert the arrays to strings.
+
+
+
