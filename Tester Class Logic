@@ -1,14 +1,14 @@
 
+Method-01
+-------------------
 
 class Tester {
     public static void main(String[] args) {
 
         // Create a Scanner object to read input from the user
+       Scanner in = new Scanner(System.in);
 
-        Scanner in = new Scanner(System.in);
-
-        /*The nextLine() method reads a line of input from the user and returns it as a string.
-
+/*The nextLine() method reads a line of input from the user and returns it as a string.
 InputString is a string variable to contain the actual string entered by the user, and it is not a reference to any other variable or object.
 */
 
@@ -25,3 +25,71 @@ InputString is a string variable to contain the actual string entered by the use
         for (int i = 0; i < splittedArray.length; i++) {
             numbers[i] = Integer.parseInt(splittedArray[i]);
         }
+
+
+
+
+
+Method-02
+-------------
+class Tester {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String inputString = in.nextLine();
+        String[] splitArray = inputString.split("#");
+        int newElement = Integer.parseInt(splitArray[0]);
+        int insertAfterIndex = Integer.parseInt(splitArray[1]);
+        String[] numberArray = splitArray[2].split(",");
+        
+        int[] numbers = new int [numberArray.length];
+        for ( int i =0;i<numberArray.length;i++){
+            numbers[i] = Integer.parseInt(numberArray[i]);
+        }
+        System.out.println(Arrays.toString(Utility.insertElement(numbers, insertAfterIndex,newElement)));
+    }
+}
+
+
+
+
+Tester class explanation
+===================================
+
+The Tester class is defined.
+The main method is the entry point of the program.
+A Scanner object (in) is created to read input from the user.
+The user is prompted to enter a string (inputString).
+The inputString is split into an array of strings (splitArray) using the # character as the delimiter.
+The first element of splitArray is parsed as an integer (newElement).
+The second element of splitArray is parsed as an integer (insertAfterIndex).
+The third element of splitArray is split into an array of strings (numberArray) using the , character as the delimiter.
+An integer array called numbers is created with a length equal to the length of numberArray.
+A for loop is used to iterate over numberArray, parsing each element as an integer and storing it in the corresponding position of the numbers array.
+The Utility.insertElement method is called with the numbers, insertAfterIndex, and newElement as arguments. The returned array is assigned to a variable.
+The resulting array is printed to the console using Arrays.toString().
+
+
+Method-03
+--------------
+
+
+class Tester {
+    public static void main(String[] arr){
+        Scanner s = new Scanner(System.in);
+        String inputString = s.nextLine();
+        String[] inputList = inputString.split("#");
+        
+        int numberOfElements = Integer.parseInt(inputList[0]);
+        int searchNumber = Integer.parseInt(inputList[1]);
+        int[] inputNumbers = Arrays.stream(inputList[2].split(",")).mapToInt(Integer::parseInt).toArray();
+        System.out.println(Utility.searchArray(numberOfElements,searchNumber,inputNumbers));
+        System.out.println(Utility1.searchArray(numberOfElements,searchNumber,inputNumbers));
+
+
+    }
+    
+}
+
+
+
+
