@@ -1,0 +1,32 @@
+public class Tester {
+
+    private static Scanner sc;
+
+    public static void main(String[] args) {
+
+        //datatype arrayname=new datatype[arraySize];
+        sc=new Scanner(System.in);
+
+        int[ ] ArrayInput=new int[10];
+
+        System.out.println("Enter 1st Element ::");
+        //User Input
+        ArrayInput[0]=sc.nextInt();
+
+        System.out.println("Enter 2nd Element ::");
+        ArrayInput[1]=sc.nextInt();
+
+        System.out.println("Enter 3rd Element ::");
+        ArrayInput[2]=sc.nextInt();
+
+        System.out.println("Enter 04th Element ::");
+        ArrayInput[3]=sc.nextInt();
+
+        System.out.println("Printing Arrayinput is ::"+ArrayInput[2]);
+
+
+    }
+
+
+}
+
