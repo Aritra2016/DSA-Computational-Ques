@@ -1,0 +1,92 @@
+Q) Write a java program using String -Consider a string instr containing ONLY digits. Traversing instr from
+left to right, identify and print the LONGEST SUBSTRING(S) of instr
+which are palindromes without a leading zero(s) and with a minimum
+length of 2.
+If no such palindromic substring can be identified print -1.
+Input Format:
+First line contains instr .
+Read the input from the standard input stream
+Output Format:
+Print the palindromic substring(s) or -1 accordingly to the standard
+output stream
+
+
+
+Ans==
+
+import java.util.*;
+
+public class LongestPalindromicSubstring {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String instr = scanner.nextLine();
+
+        String longestPalindromicSubstring = findLongestPalindromicSubstring(instr);
+        System.out.println(longestPalindromicSubstring);
+    }
+
+    public static String findLongestPalindromicSubstring(String instr) {
+        String longestSubstring = "";
+        int maxLength = 0;
+
+        for (int i = 0; i < instr.length(); i++) {
+            for (int j = i + 2; j <= instr.length(); j++) {
+                String substring = instr.substring(i, j);
+                if (isPalindrome(substring) && !substring.startsWith("0") && substring.length() > maxLength) {
+                    maxLength = substring.length();
+                    longestSubstring = substring;
+                }
+            }
+        }
+
+        return maxLength > 0 ? longestSubstring : "-1";
+    }
+
+    public static boolean isPalindrome(String str) {
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
+
+
+
+Explanation
+============
+
+The program begins by importing the necessary libraries, including java.util.Scanner, which allows reading input from the standard input stream.
+
+The LongestPalindromicSubstring class is defined.
+
+In the main method, a Scanner object is created to read input from the standard input stream.
+
+The user is prompted to enter the input string instr containing only digits.
+
+The input string instr is read using the nextLine() method of the Scanner object.
+
+The findLongestPalindromicSubstring method is called with instr as an argument, and the returned palindromic substring is stored in the longestPalindromicSubstring variable.
+
+The findLongestPalindromicSubstring method takes the input string instr as a parameter and returns the longest palindromic substring without leading zeros, or -1 if no such substring is found.
+
+Inside the findLongestPalindromicSubstring method, the longestSubstring variable is initialized as an empty string, and the maxLength variable is initialized to 0.
+
+A nested loop is used to generate all possible substrings of instr. The outer loop iterates over each character in instr, and the inner loop iterates over each possible substring starting from the current character.
+
+For each substring, substring is assigned the value of the current substring being considered.
+
+The isPalindrome function is called to check if substring is a palindrome and if it does not start with a zero. The substring length is also checked to ensure it is greater than the current maximum length.
+
+If all the conditions are met, the maxLength variable is updated to the length of the current substring, and the longestSubstring variable is updated to the current substring.
+
+After processing all possible substrings, the findLongestPalindromicSubstring method returns the longestSubstring if its length is greater than 0, or -1 otherwise.
+
+In the main method, the longestPalindromicSubstring is printed to the standard output stream.
