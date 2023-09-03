@@ -1,0 +1,108 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Utility {
+    public static int[] reverseArray(int[] numbers){
+        int[] reversedArray = new int[numbers.length];
+        int n = numbers.length;
+        int i = 0;
+        int j = n-1;
+        while( i<n ){
+            reversedArray[j] = numbers[i];
+            i += 1;
+            j -= 1;
+        }
+        return reversedArray;
+    }
+}
+
+
+
+
+
+
+class Tester {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String inputString = in.nextLine();
+        int[] numbers = Arrays.stream(inputString.split(",")).mapToInt(Integer::parseInt).toArray();
+        System.out.println(Arrays.toString(Utility.reverseArray(numbers)));
+    }
+}
+
+
+Logic of Tester class
+===========================
+The code you provided consists of two classes: Utility and Tester. Let's break down the logic of the Tester class step by step:
+
+The Tester class has the main method where the program execution starts.
+
+-A Scanner object named in is created to read input from the user.
+
+-The in.nextLine() statement reads a line of input from the user and assigns it to the inputString variable.
+
+-The inputString is split into an array of strings using the comma (,) as the delimiter. The resulting array is processed using the Arrays.stream() method.
+
+-The mapToInt(Integer::parseInt) converts each element of the array from a string to an integer using the Integer.parseInt() method.
+
+The toArray() method is called to convert the IntStream back to an array of integers, which is stored in the numbers variable.
+
+The Utility.reverseArray(numbers) method is called, passing the numbers array as an argument. This method returns a new array with the elements in reverse order.
+
+The Arrays.toString() method is used to convert the reversed array to a string representation.
+
+Finally, System.out.println() is used to print the reversed array to the console.
+
+
+
+
+
+
+
+Method-02
+==============
+
+
+public class ArrayUtility {
+    public static void reverseArray(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
+
+
+
+public class ArrayReverseTester {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Get the size of the array from the user
+        System.out.print("Enter the size of the array: ");
+        int size = input.nextInt();
+
+        int[] arr = new int[size];
+
+        // Get the array elements from the user
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < size; i++) {
+            arr[i] = input.nextInt();
+        }
+
+        // Reverse the array using the utility class
+        ArrayUtility.reverseArray(arr);
+
+        // Print the reversed array
+        System.out.println("Reversed Array:");
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
